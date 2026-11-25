@@ -45,10 +45,6 @@ flowchart LR
 
 有使用体会或想聊聊工作流，欢迎给我发邮件。 [964372370@qq.com](mailto:964372370@qq.com)
 
-## 许可证
-
-本项目采用 [MIT 许可证](LICENSE)。
-
 ## 用到的开源 Skill 和工具
 
 下面三个 Skill 由我制作并开源。
@@ -63,3 +59,7 @@ flowchart LR
 - `lark-cli`（含 `lark-doc`）用于读取和更新飞书选题记录。 [GitHub](https://github.com/larksuite/cli)
 
 定时任务还用到 Trae 自带的微信公众号文章插件 `trae-remote-official:wechat-mp-article`。我用 APIMart 的 GPT Image 2 生图，草稿导入走微信官方接口。 [Trae](https://www.trae.cn/) · [APIMart](https://apimart.ai/zh/model/gpt-image-2) · [微信开发者平台](https://developers.weixin.qq.com/platform/)
+
+## 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。

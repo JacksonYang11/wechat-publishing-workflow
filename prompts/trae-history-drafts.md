@@ -1,9 +1,23 @@
 # Trae 每日任务：热点选题与通俗历史初稿
 
-复制提示词前，在自己的飞书中新建云文档《已写历史话题记录》，用这份文档的链接替换 `{{FEISHU_HISTORY_TOPICS_DOC_URL}}`。确认 Trae 定时任务中的 `lark-cli`（`lark-doc`）可以读取和编辑这份文档。有旧稿的话，可以按下方格式补录，供任务查重。 [配置步骤](../docs/workflow.md)
+## 插件与 Skill
+
+创建定时任务前，确认 Trae 能调用下面的插件和 Skill。两个 Skill 可从各自的 GitHub 仓库获取。
+
+- `trae-remote-official:wechat-mp-article` 是 Trae 平台自带的微信公众号文章插件。
+- `bohaixiaoli-perspective-v4.1` 用于通俗历史写作。 [GitHub 仓库](https://github.com/JacksonYang11/bohaixiaoli-skill)
+- `qu-ai-wei` 用于润色初稿，减少 AI 写作痕迹。 [GitHub 仓库](https://github.com/LifelongLazyLearner/qu-ai-wei)
+
+## 填写提示词
+
+复制提示词前，替换代码块里的三个占位符：
+
+- `{{WECHAT_ACCOUNT_NAME}}` 填自己的微信公众号名称。
+- `{{TRAE_OUTPUT_DIR}}` 填 Trae 定时任务能够写入的输出目录，例如任务工作区下的 `history-drafts`。在两处路径中填入同一个目录，末尾省略斜杠。
+- `{{FEISHU_HISTORY_TOPICS_DOC_URL}}` 填自己新建的飞书云文档《已写历史话题记录》的链接。确认 Trae 定时任务中的 `lark-cli`（`lark-doc`）能读取和编辑这份文档。有旧稿的话，按第六节的格式补录。 [配置步骤](../docs/workflow.md)
 
 ```text
-帮我搜集最近24-48小时内的热门话题，为"照古今"公众号找通俗历史选题，并把选中的3个直接写成推文。
+以每次运行的时间为基准，搜集最近 24 小时内的热门话题，为「{{WECHAT_ACCOUNT_NAME}}」公众号找通俗历史选题，并把选中的 3 个写成推文初稿。
 
 已写历史话题记录（飞书云文档）：{{FEISHU_HISTORY_TOPICS_DOC_URL}}
 
@@ -79,19 +93,21 @@ Use Skill: qu-ai-wei
 
 ## 六、去重（必做）
 
-确定选题前，用 lark-cli（lark-doc）读取上方链接指定的飞书文档，按人物、朝代、核心叙事逐一比对，重复或高度相似就换方向。飞书读写都以填入的链接为准。
+确定选题前，用 lark-cli（lark-doc）读取上方链接指定的飞书文档，按历史话题、叙事角度、核心人物、朝代和核心叙事逐一比对，重复或高度相似就换方向。飞书读写都以填入的链接为准。
 
 写完后，每篇初稿用推荐标题登记一条，按以下格式追加到文档末尾。保留原有记录，重跑时跳过本次已登记的条目。
 
-YYYY-MM-DD | 推文N | 标题 | 核心人物 | 朝代 | 核心叙事关键词
+日期（YYYY-MM-DD） | 推文序号（推文N） | 文章标题 | 历史话题 | 叙事角度 | 核心人物 | 朝代 | 核心叙事关键词 | 虚实关键词
+
+历史话题填写具体的人物、事件或制度，叙事角度填写文章围绕的那次选择或冲突。虚实关键词用「史实」「存疑」「文学化表达」标明需要区分的内容，没有相关内容可填「无」。
 
 链接未填写或读取失败时，照常交付选题日报和初稿，并在日报里标明飞书查重未执行。记录未能写入时，在日报里列出未写入的条目，供用户手动补录。
 
 ## 七、路径
 
-日报：/workspace/照古今推文/选题日报/通俗历史文章选题日报-YYYY-MM-DD.md
+日报：{{TRAE_OUTPUT_DIR}}/选题日报/通俗历史文章选题日报-YYYY-MM-DD.md
 
-推文：/workspace/照古今推文/YYYY-MM-DD/推文N-标题.md（Markdown，不是HTML）
+推文：{{TRAE_OUTPUT_DIR}}/YYYY-MM-DD/推文N-标题.md（Markdown，不是HTML）
 
 ## 八、交付前自查
 

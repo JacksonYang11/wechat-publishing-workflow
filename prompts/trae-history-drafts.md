@@ -5,7 +5,7 @@
 创建定时任务前，确认 Trae 能调用下面的插件和 Skill。两个 Skill 可从各自的 GitHub 仓库获取。
 
 - `trae-remote-official:wechat-mp-article` 是 Trae 平台自带的微信公众号文章插件。
-- `bohaixiaoli-perspective-v4.1` 用于通俗历史写作。 [GitHub 仓库](https://github.com/JacksonYang11/bohaixiaoli-skill)
+- `bohaixiaoli-perspective` 用于通俗历史写作，当前文档引用的是 v4.1 版。 [GitHub 仓库](https://github.com/JacksonYang11/bohaixiaoli-skill)
 - `qu-ai-wei` 用于润色初稿，减少 AI 写作痕迹。 [GitHub 仓库](https://github.com/LifelongLazyLearner/qu-ai-wei)
 
 ## 填写提示词
@@ -14,7 +14,7 @@
 
 - `{{WECHAT_ACCOUNT_NAME}}` 填自己的微信公众号名称。
 - `{{TRAE_OUTPUT_DIR}}` 填 Trae 定时任务能够写入的输出目录，例如任务工作区下的 `history-drafts`。在两处路径中填入同一个目录，末尾省略斜杠。
-- `{{FEISHU_HISTORY_TOPICS_DOC_URL}}` 填自己新建的飞书云文档《已写历史话题记录》的链接。确认 Trae 定时任务中的 `lark-cli`（`lark-doc`）能读取和编辑这份文档。有旧稿的话，按第六节的格式补录。 [配置步骤](../docs/workflow.md)
+- `{{FEISHU_HISTORY_TOPICS_DOC_URL}}` 填自己新建的飞书云文档《已写历史话题记录》的链接。先给 Trae Agent 开通飞书文档权限。有旧稿的话，按第六节的格式补录。 [飞书授权步骤](../docs/workflow.md#给-trae-agent-开通飞书文档权限)
 
 ```text
 以每次运行的时间为基准，搜集最近 24 小时内的热门话题，为「{{WECHAT_ACCOUNT_NAME}}」公众号找通俗历史选题，并把选中的 3 个写成推文初稿。
@@ -23,7 +23,7 @@
 
 Use plugin: trae-remote-official:wechat-mp-article
 
-Use Skill: bohaixiaoli-perspective-v4.1
+Use Skill: bohaixiaoli-perspective
 
 Use Skill: qu-ai-wei
 
@@ -93,7 +93,7 @@ Use Skill: qu-ai-wei
 
 ## 六、去重（必做）
 
-确定选题前，用 lark-cli（lark-doc）读取上方链接指定的飞书文档，按历史话题、叙事角度、核心人物、朝代和核心叙事逐一比对，重复或高度相似就换方向。飞书读写都以填入的链接为准。
+确定选题前，用 lark-cli（lark-doc）以已授权的飞书用户身份读取上方链接指定的文档，按历史话题、叙事角度、核心人物、朝代和核心叙事逐一比对，重复或高度相似就换方向。飞书读写都使用该身份和填入的链接。
 
 写完后，每篇初稿用推荐标题登记一条，按以下格式追加到文档末尾。保留原有记录，重跑时跳过本次已登记的条目。
 
